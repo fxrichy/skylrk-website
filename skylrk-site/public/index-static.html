@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYLRK - Streetwear Fashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        skylrk: {
+                            dark: '#0a0a0a',
+                            blue: {
+                                light: '#a8d8ea',
+                                DEFAULT: '#4a90a4',
+                                dark: '#1a3a4a',
+                                deep: '#0d1b2a',
+                            },
+                            gray: '#1a1a1a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 6s ease-in-out 3s infinite; }
+        
+        /* Grain texture */
+        .grain::before {
+            content: '';
+            position: absolute;
+            inset: -200%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.15;
+            animation: grain 8s steps(10) infinite;
+        }
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-5%, -10%); }
+            20% { transform: translate(-15%, 5%); }
+            30% { transform: translate(7%, -25%); }
+            40% { transform: translate(-5%, 25%); }
+            50% { transform: translate(-15%, 10%); }
+            60% { transform: translate(15%, 0%); }
+            70% { transform: translate(0%, 15%); }
+            80% { transform: translate(3%, 35%); }
+            90% { transform: translate(-10%, 10%); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-skylrk-blue-deep via-skylrk-blue-dark to-black text-white min-h-screen">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-8 py-4 bg-black/50 backdrop-blur-md">
+        <div class="flex items-center gap-4">
+            <button class="w-10 h-10 flex items-center justify-center border border-white/30 hover:bg-white hover:text-black transition-all">
+                <span class="text-xl">+</span>
+            </button>
+            <a href="/" class="text-2xl font-display tracking-widest">SKYLRK</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="text-sm hover:text-skylrk-blue-light transition-colors">[ $ USD ]</button>
+            <button class="text-sm hover:text-skylrk-blue-light transition-colors">Cart (0)</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+        <!-- Blue Section -->
+        <section class="px-4 md:px-8 py-8 relative overflow-hidden">
+            <div class="absolute inset-0 grain"></div>
+            <div class="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
+                <!-- Product 1 - NO ZIP HOODIE -->
+                <div class="md:col-span-2 md:row-span-2 animate-float">
+                    <div class="relative cursor-pointer group overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/50 to-black/50">
+                        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80" 
+                             alt="NO ZIP HOODIE" 
+                             class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                            View NO ZIP HOODIE
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 - SPEED DEMON -->
+                <div class="md:translate-y-8">
+                    <div class="relative cursor-pointer group overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/50 to-black/50">
+                        <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80" 
+                             alt="SPEED DEMON" 
+                             class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                            View SPEED DEMON
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 - Hoodie -->
+                <div>
+                    <div class="relative cursor-pointer group overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/50 to-black/50">
+                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80" 
+                             alt="HOODIE" 
+                             class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                            View HOODIE
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 - SPOT HOODIE (Sold Out) -->
+                <div>
+                    <div class="relative overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/50 to-black/50 opacity-60">
+                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80" 
+                             alt="SPOT HOODIE" 
+                             class="w-full aspect-square object-cover">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider border border-white/30 px-3 py-1">
+                            Sold out
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 - BIEBERVELLI -->
+                <div class="animate-float-delayed">
+                    <div class="relative overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/50 to-black/50 opacity-60">
+                        <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?w=600&q=80" 
+                             alt="BIEBERVELLI HOODIE" 
+                             class="w-full aspect-square object-cover">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider border border-white/30 px-3 py-1">
+                            Sold out
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 - ZEBRA -->
+                <div class="md:col-span-2">
+                    <div class="relative overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/50 to-black/50 opacity-60">
+                        <img src="https://images.unsplash.com/photo-1556825191-d765699f1ca9?w=800&q=80" 
+                             alt="ZEBRA HOODIE" 
+                             class="w-full aspect-square object-cover">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider border border-white/30 px-3 py-1">
+                            Sold out
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Black Section -->
+        <section class="px-4 md:px-8 py-8 bg-black">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
+                <!-- Product 7 - NOT CLOCKING -->
+                <div class="md:translate-y-8 opacity-60">
+                    <div class="relative overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/30 to-black/50">
+                        <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80" 
+                             alt="NOT CLOCKING THERMAL" 
+                             class="w-full aspect-square object-cover">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider border border-white/30 px-3 py-1">
+                            Sold out
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 - SUNKEN MULE -->
+                <div class="md:col-span-2 md:row-span-2">
+                    <div class="relative cursor-pointer group overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/30 to-black/50">
+                        <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800&q=80" 
+                             alt="SUNKEN MULE" 
+                             class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                            View SUNKEN MULE
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 9 - SIZZLER CASE -->
+                <div>
+                    <div class="relative cursor-pointer group overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/30 to-black/50">
+                        <img src="https://images.unsplash.com/photo-1603351154351-5cfb3d04ef31?w=600&q=80" 
+                             alt="SIZZLER CASE" 
+                             class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                            View SIZZLER CASE
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 10 - DENIM SHORT -->
+                <div>
+                    <div class="relative cursor-pointer group overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/30 to-black/50">
+                        <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600&q=80" 
+                             alt="DENIM SHORT" 
+                             class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                            View DENIM SHORT
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 11 - BEANIE -->
+                <div class="opacity-60">
+                    <div class="relative overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/30 to-black/50">
+                        <img src="https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&q=80" 
+                             alt="BEANIE" 
+                             class="w-full aspect-square object-cover">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider border border-white/30 px-3 py-1">
+                            Sold out
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 12 - LIVE TEE -->
+                <div class="opacity-60">
+                    <div class="relative overflow-hidden bg-gradient-to-b from-skylrk-blue-dark/30 to-black/50">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" 
+                             alt="LIVE TEE" 
+                             class="w-full aspect-square object-cover">
+                        <div class="absolute bottom-4 left-4 text-xs tracking-wider border border-white/30 px-3 py-1">
+                            Sold out
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Info -->
+        <section class="bg-black px-4 md:px-8 py-12 text-center">
+            <h2 class="text-3xl font-display tracking-widest mb-6">SKYLRK</h2>
+            <p class="text-white/60 text-sm max-w-md mx-auto mb-8">
+                Futuristic streetwear for the digital generation. Limited releases, premium quality.
+            </p>
+            <div class="flex justify-center gap-6">
+                <a href="#" class="text-white/60 hover:text-white text-sm">Shop</a>
+                <a href="#" class="text-white/60 hover:text-white text-sm">Contact</a>
+                <a href="#" class="text-white/60 hover:text-white text-sm">Policies</a>
+                <a href="#" class="text-white/60 hover:text-white text-sm">Instagram</a>
+            </div>
+            <p class="text-white/40 text-xs mt-8">© 2026 SKYLRK. All rights reserved.</p>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYLRK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'skylrk-black': '#000000',
+                        'skylrk-accent': '#8BC4E4',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .animate-in { animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-black text-white antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="text-2xl font-bold tracking-tighter">SKYLRK</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm text-white/70 hover:text-white transition">Home</a>
+                    <a href="#about" class="text-sm text-white/70 hover:text-white transition">About</a>
+                    <a href="#work" class="text-sm text-white/70 hover:text-white transition">Work</a>
+                    <a href="#contact" class="text-sm text-white/70 hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20 text-center animate-in">
+            <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-8">
+                <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                <span class="text-sm text-white/70">Premium Quality</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight animate-in" style="animation-delay: 0.1s">
+                <span class="block">SKYLRK</span>
+                <span class="block text-3xl md:text-4xl lg:text-5xl font-light text-white/60 mt-4">
+                    Elevate Your Experience
+                </span>
+            </h1>
+            
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-white/50 leading-relaxed mt-8">
+                Discover premium quality and exceptional design. Built for those who demand excellence.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+                <a href="#work" class="bg-white text-black px-8 py-4 rounded-full font-medium hover:bg-white/90 transition">
+                    Explore Work →
+                </a>
+                <a href="#contact" class="border border-white/20 text-white px-8 py-4 rounded-full font-medium hover:bg-white/5 transition">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="about" class="py-32 px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Exceptional Design</h2>
+                <p class="text-lg text-white/50 max-w-2xl mx-auto">Crafted with precision and built for performance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 mb-6"></div>
+                    <h3 class="text-xl font-semibold mb-3">Premium Quality</h3>
+                    <p class="text-white/50">Every detail crafted to perfection.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 mb-6"></div>
+                    <h3 class="text-xl font-semibold mb-3">Built to Last</h3>
+                    <p class="text-white/50">Durable construction that stands the test of time.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 mb-6"></div>
+                    <h3 class="text-xl font-semibold mb-3">Lightning Fast</h3>
+                    <p class="text-white/50">Optimized for speed and efficiency.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 mb-6"></div>
+                    <h3 class="text-xl font-semibold mb-3">Global Reach</h3>
+                    <p class="text-white/50">Connect with audiences worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-32 px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Let's Connect</h2>
+                <p class="text-lg text-white/50 max-w-xl mx-auto">Ready to elevate your next project?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-6 lg:px-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <span class="text-2xl font-bold tracking-tighter">SKYLRK</span>
+                <p class="text-white/30 text-sm mt-4 md:mt-0">© 2025 SKYLRK. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
