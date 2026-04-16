@@ -1014,15 +1014,14 @@
         }
 
         /* Reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-        }
+        /* All content visible by default */
+        .featured { opacity: 1 !important; }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+        /* Force all content visible */
+        .reveal, .product-card, .lookbook-item, .newsletter-title, .statement-content {
+            opacity: 1 !important;
+            transform: none !important;
+            visibility: visible !important;
         }
 
         /* Responsive */
