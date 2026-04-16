@@ -3,841 +3,1063 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THRIVE Motors | Premium Car Sales Nigeria</title>
+    <title>THRIVE | Premium Streetwear</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'display': ['Space Grotesk', 'Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', system-ui, sans-serif; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gradient-start: #87CEEB;
+            --gradient-mid: #5BA8C4;
+            --gradient-dark: #2D7A9A;
+            --gradient-end: #000000;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
             overflow-x: hidden;
-            background: #fafafa;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
-        
-        /* Smooth scroll */
-        html { scroll-behavior: smooth; }
-        
-        /* Navigation glassmorphism */
-        .nav-glass {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        /* Hero gradient text */
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Car showcase gradient */
-        .hero-gradient {
             background: linear-gradient(180deg, 
-                rgba(102, 126, 234, 0.1) 0%, 
-                rgba(255, 255, 255, 0) 50%,
-                rgba(0, 0, 0, 0.02) 100%);
+                var(--gradient-start) 0%, 
+                var(--gradient-mid) 15%,
+                var(--gradient-dark) 30%,
+                var(--gradient-end) 55%);
+            min-height: 100vh;
         }
-        
+
+        /* Grain texture overlay */
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.06;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Typography */
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.15em;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Logo pill button */
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            color: white;
+            padding: 10px 20px;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 999px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .logo:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        /* Cart button */
+        .cart-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 50%;
+            background: transparent;
+            color: white;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cart-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+        }
+
+        /* Navigation links */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Currency selector */
+        .currency {
+            color: white;
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            padding: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .currency:hover {
+            opacity: 0.7;
+        }
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 1px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        /* Main content */
+        main {
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+
+        /* Hero section */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 20px;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 12vw, 140px);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            line-height: 0.9;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 14px;
+            letter-spacing: 0.15em;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        /* Product showcase - scattered layout */
+        .product-showcase {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        .product {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product:hover {
+            transform: translateY(-10px) scale(1.02);
+            z-index: 50;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+            transition: filter 0.3s;
+        }
+
+        .product:hover img {
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4));
+        }
+
+        /* Product positions */
+        .product-1 { top: 0; left: 5%; width: 280px; }
+        .product-2 { top: 5%; left: 50%; transform: translateX(-50%); width: 200px; }
+        .product-3 { top: 10%; right: 8%; width: 260px; }
+        .product-4 { top: 35%; left: 15%; width: 300px; }
+        .product-5 { top: 30%; right: 5%; width: 320px; }
+        .product-6 { top: 55%; left: 8%; width: 250px; }
+        .product-7 { top: 50%; left: 45%; width: 280px; }
+        .product-8 { top: 60%; right: 12%; width: 220px; }
+
+        /* Product labels */
+        .product-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .product:hover .product-label {
+            opacity: 0.8;
+            bottom: -40px;
+        }
+
         /* Floating animation */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
-        .float-anim { animation: float 4s ease-in-out infinite; }
-        
-        /* Slide up animation */
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
         }
-        .slide-up { animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        
-        /* Scale animation */
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
-        .scale-in { animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        
-        /* Car card hover */
-        .car-card {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .car-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-        }
-        .car-card:hover .car-img {
-            transform: scale(1.05);
-        }
-        .car-img {
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        /* Feature card hover */
-        .feature-card {
-            transition: all 0.3s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-4px);
-            border-color: #667eea;
-        }
-        
-        /* Button animations */
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        .btn-primary:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-        
-        /* Stat counter animation */
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .stat-anim { animation: countUp 0.6s ease forwards; }
-        
-        /* Filter pill */
-        .filter-pill {
-            transition: all 0.3s ease;
-        }
-        .filter-pill.active {
-            background: #667eea;
+
+        .float-1 { animation: float 6s ease-in-out infinite; }
+        .float-2 { animation: float-reverse 7s ease-in-out infinite; }
+        .float-3 { animation: float-slow 8s ease-in-out infinite; }
+        .float-4 { animation: float 5s ease-in-out infinite; }
+
+        /* Cookie banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 20px 24px;
+            max-width: 340px;
+            z-index: 1000;
             color: white;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            line-height: 1.6;
         }
-        .filter-pill:hover:not(.active) {
-            background: #f3f4f6;
+
+        .cookie-banner p {
+            margin-bottom: 16px;
+            text-transform: uppercase;
         }
-        
-        /* Modal animation */
-        @keyframes modalSlide {
-            from { opacity: 0; transform: scale(0.95) translateY(-20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 12px;
         }
-        .modal-anim {
-            animation: modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+        .cookie-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
         }
-        
-        /* Shimmer loading */
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+
+        .cookie-btn.reject {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.4);
         }
-        .shimmer {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
+
+        .cookie-btn.reject:hover {
+            background: rgba(255,255,255,0.1);
         }
-        
-        /* Intersection Observer classes */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        /* Mobile menu */
-        .mobile-menu {
+
+        .cookie-btn.accept {
+            background: white;
+            color: black;
+        }
+
+        .cookie-btn.accept:hover {
+            background: rgba(255,255,255,0.9);
+        }
+
+        /* Cart sidebar */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+
+        .cart-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 420px;
+            height: 100vh;
+            background: white;
+            z-index: 201;
             transform: translateX(100%);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
         }
-        .mobile-menu.open { transform: translateX(0); }
+
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            padding: 24px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            letter-spacing: 0.1em;
+        }
+
+        .close-cart {
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .close-cart:hover {
+            opacity: 1;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            padding: 60px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 100px;
+            object-fit: cover;
+            background: #f5f5f5;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-price {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .cart-item-remove:hover {
+            opacity: 0.6;
+        }
+
+        .cart-footer {
+            padding: 24px;
+            border-top: 1px solid #eee;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .cart-total span:last-child {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: black;
+            color: white;
+            border: none;
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: #333;
+        }
+
+        /* Product detail modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 4px;
+            transform: scale(0.95);
+            transition: transform 0.4s;
+        }
+
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-image {
+            aspect-ratio: 1;
+            background: #f5f5f5;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .modal-price {
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .modal-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 32px;
+        }
+
+        .size-selector {
+            margin-bottom: 24px;
+        }
+
+        .size-label {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .sizes {
+            display: flex;
+            gap: 8px;
+        }
+
+        .size-btn {
+            width: 48px;
+            height: 48px;
+            border: 1px solid #ddd;
+            background: white;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .size-btn:hover,
+        .size-btn.active {
+            border-color: black;
+            background: black;
+            color: white;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 18px;
+            background: black;
+            color: white;
+            border: none;
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: auto;
+        }
+
+        .add-to-cart:hover {
+            background: #333;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close-modal:hover {
+            background: #f5f5f5;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: black;
+            color: white;
+            padding: 16px 32px;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            z-index: 400;
+            opacity: 0;
+            transition: all 0.4s;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .product-showcase {
+                height: 500px;
+            }
+
+            .product-1 { width: 220px; }
+            .product-2 { width: 160px; }
+            .product-3 { width: 200px; }
+            .product-4 { width: 240px; left: 5%; }
+            .product-5 { width: 260px; }
+            .product-6 { width: 200px; }
+            .product-7 { width: 220px; }
+            .product-8 { width: 180px; }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .product-showcase {
+                height: 400px;
+            }
+
+            .product-1 { width: 180px; top: 5%; }
+            .product-2 { width: 120px; }
+            .product-3 { width: 160px; top: 15%; }
+            .product-4 { display: none; }
+            .product-5 { width: 200px; top: 35%; }
+            .product-6 { display: none; }
+            .product-7 { width: 180px; left: 40%; top: 55%; }
+            .product-8 { display: none; }
+
+            .modal-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cookie-banner {
+                left: 16px;
+                right: 16px;
+                bottom: 16px;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .product-showcase {
+                height: 350px;
+            }
+
+            .product-1 { width: 140px; }
+            .product-2 { width: 100px; }
+            .product-3 { width: 130px; }
+            .product-5 { width: 150px; }
+            .product-7 { width: 140px; }
+        }
     </style>
 </head>
-<body class="text-gray-900">
+<body>
+    <div class="grain"></div>
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 nav-glass transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <a href="#" class="flex items-center space-x-2 group">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition">T</div>
-                    <span class="font-display text-2xl font-bold tracking-tight">THRIVE<span class="text-indigo-600">MOTORS</span></span>
-                </a>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition">Home</a>
-                    <a href="#inventory" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition">Inventory</a>
-                    <a href="#services" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition">Services</a>
-                    <a href="#about" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition">About</a>
-                    <a href="#contact" class="text-sm font-medium text-gray-600 hover:text-indigo-600 transition">Contact</a>
-                </div>
-                
-                <!-- CTA -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <button onclick="openWhatsApp()" class="btn-primary text-white px-6 py-2.5 rounded-full text-sm font-medium flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        WhatsApp Us
-                    </button>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2">
-                    <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                    <svg id="closeIcon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-left">
+            <a href="#" class="logo">THRIVE</a>
+            <button class="cart-btn" onclick="toggleCart()">
+                <span id="cartCount">0 +</span>
+            </button>
         </div>
         
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl z-50 md:hidden">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-8">
-                    <span class="font-display text-xl font-bold">Menu</span>
-                    <button onclick="toggleMobileMenu()">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="space-y-6">
-                    <a href="#home" onclick="toggleMobileMenu()" class="block text-lg font-medium">Home</a>
-                    <a href="#inventory" onclick="toggleMobileMenu()" class="block text-lg font-medium">Inventory</a>
-                    <a href="#services" onclick="toggleMobileMenu()" class="block text-lg font-medium">Services</a>
-                    <a href="#about" onclick="toggleMobileMenu()" class="block text-lg font-medium">About</a>
-                    <a href="#contact" onclick="toggleMobileMenu()" class="block text-lg font-medium">Contact</a>
-                    <button onclick="openWhatsApp(); toggleMobileMenu();" class="btn-primary w-full text-white px-6 py-3 rounded-full font-medium">
-                        WhatsApp Us
-                    </button>
-                </div>
+        <nav class="nav-links">
+            <a href="#" onclick="filterProducts('all')">Shop</a>
+            <a href="#" onclick="showToast('Collection coming soon')">Collection</a>
+            <a href="#" onclick="showToast('Lookbook coming soon')">Lookbook</a>
+            <a href="#" onclick="showToast('Contact: hello@thrive.com')">Contact</a>
+        </nav>
+        
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <span class="currency" onclick="toggleCurrency()">[ $USD ]</span>
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen pt-20 hero-gradient overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 lg:pt-24">
-            <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-                <!-- Text Content -->
-                <div class="space-y-8 z-10">
-                    <div class="slide-up">
-                        <span class="inline-flex items-center px-4 py-2 rounded-full bg-indigo-50 text-indigo-600 text-sm font-medium">
-                            <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                            Premium Car Dealership
-                        </span>
-                    </div>
-                    <h1 class="font-display text-5xl lg:text-7xl font-bold leading-tight slide-up delay-100">
-                        Find Your <span class="gradient-text">Perfect</span> Drive
-                    </h1>
-                    <p class="text-lg text-gray-600 max-w-lg slide-up delay-200">
-                        Nigeria's trusted destination for premium vehicles. Import, cleared, and ready for the road. Direct Japan, USA & Europe imports.
-                    </p>
-                    <div class="flex flex-wrap gap-4 slide-up delay-300">
-                        <a href="#inventory" class="btn-primary text-white px-8 py-4 rounded-full font-medium inline-flex items-center gap-2">
-                            Browse Cars
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                            </svg>
-                        </a>
-                        <a href="#contact" class="px-8 py-4 rounded-full font-medium border border-gray-300 hover:border-indigo-600 hover:text-indigo-600 transition flex items-center gap-2">
-                            Sell Your Car
-                        </a>
-                    </div>
-                    <!-- Stats -->
-                    <div class="flex gap-8 pt-8 slide-up delay-400">
-                        <div>
-                            <p class="font-display text-3xl font-bold text-gray-900">500+</p>
-                            <p class="text-sm text-gray-500">Cars Sold</p>
-                        </div>
-                        <div>
-                            <p class="font-display text-3xl font-bold text-gray-900">15K+</p>
-                            <p class="text-sm text-gray-500">Happy Clients</p>
-                        </div>
-                        <div>
-                            <p class="font-display text-3xl font-bold text-gray-900">10+</p>
-                            <p class="text-sm text-gray-500">Years Experience</p>
-                        </div>
-                    </div>
+    <!-- Main Content -->
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="font-display">THRIVE</h1>
+                <p>Premium Streetwear Collection</p>
+            </div>
+            
+            <div class="product-showcase">
+                <!-- Product 1: Hoodie -->
+                <div class="product product-1 float-1" onclick="openProduct('NO ZIP HOODIE', 160, 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500')">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500&h=600&fit=crop" alt="NO ZIP HOODIE">
+                    <span class="product-label">NO ZIP HOODIE — $160</span>
                 </div>
                 
-                <!-- Hero Image -->
-                <div class="relative lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:w-1/2 slide-up delay-200">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=1200&h=800&fit=crop&q=90" 
-                             alt="Luxury Car" 
-                             class="w-full h-auto rounded-2xl shadow-2xl float-anim">
-                        <!-- Floating Badge -->
-                        <div class="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-4 float-anim" style="animation-delay: 0.5s;">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-900">100% Verified</p>
-                                    <p class="text-xs text-gray-500">Full History Reports</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Product 2: Sunglasses -->
+                <div class="product product-2 float-2" onclick="openProduct('SPEED DEMON', 85, 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400')">
+                    <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=250&fit=crop" alt="SPEED DEMON">
+                    <span class="product-label">SPEED DEMON — $85</span>
+                </div>
+                
+                <!-- Product 3: Pink Hoodie -->
+                <div class="product product-3 float-3" onclick="openProduct('ESSENTIAL HOODIE', 150, 'https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?w=500')">
+                    <img src="https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?w=500&h=600&fit=crop" alt="ESSENTIAL HOODIE">
+                    <span class="product-label">ESSENTIAL HOODIE — $150</span>
+                </div>
+                
+                <!-- Product 4: Black Hoodie -->
+                <div class="product product-4 float-4" onclick="openProduct('CLASSIC HOODIE', 140, 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500')">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500&h=600&fit=crop" alt="CLASSIC HOODIE">
+                    <span class="product-label">CLASSIC HOODIE — $140</span>
+                </div>
+                
+                <!-- Product 5: Polka Dot -->
+                <div class="product product-5 float-1" onclick="openProduct('DOT HOODIE', 165, 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500')">
+                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&h=650&fit=crop" alt="DOT HOODIE">
+                    <span class="product-label">DOT HOODIE — $165</span>
+                </div>
+                
+                <!-- Product 6: Biebervelli -->
+                <div class="product product-6 float-3" onclick="openProduct('STREET LABEL HOODIE', 155, 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500')">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&h=600&fit=crop" alt="STREET LABEL HOODIE">
+                    <span class="product-label">STREET LABEL HOODIE — $155</span>
+                </div>
+                
+                <!-- Product 7: Pattern -->
+                <div class="product product-7 float-2" onclick="openProduct('LIVE HOODIE', 145, 'https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=500')">
+                    <img src="https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=500&h=600&fit=crop" alt="LIVE HOODIE">
+                    <span class="product-label">LIVE HOODIE — $145</span>
+                </div>
+                
+                <!-- Product 8: Pink Glasses -->
+                <div class="product product-8 float-4" onclick="openProduct('RETRO SHADES', 75, 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400')">
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=200&fit=crop" alt="RETRO SHADES">
+                    <span class="product-label">RETRO SHADES — $75</span>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>CART</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
         </div>
         
-        <!-- Background Elements -->
-        <div class="absolute top-1/4 right-0 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-        <div class="absolute bottom-0 left-1/4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-    </section>
+        <div class="cart-items" id="cartItems">
+            <div class="cart-empty">Your cart is empty</div>
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>TOTAL</span>
+                <span id="cartTotal">$0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
 
-    <!-- Filter & Inventory Section -->
-    <section id="inventory" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 reveal">
-                <span class="text-indigo-600 font-medium text-sm uppercase tracking-wider">Our Collection</span>
-                <h2 class="font-display text-4xl lg:text-5xl font-bold mt-4 mb-6">Featured Vehicles</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Explore our curated selection of premium vehicles, direct imports from Japan, USA, and Europe.</p>
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="productModal" onclick="closeProduct()">
+        <button class="close-modal" onclick="closeProduct()">&times;</button>
+        
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-image">
+                <img id="modalImg" src="" alt="">
             </div>
             
-            <!-- Filters -->
-            <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
-                <button onclick="filterCars('all')" class="filter-pill active px-6 py-2.5 rounded-full border border-gray-200 text-sm font-medium" data-filter="all">All Cars</button>
-                <button onclick="filterCars('suv')" class="filter-pill px-6 py-2.5 rounded-full border border-gray-200 text-sm font-medium" data-filter="suv">SUVs</button>
-                <button onclick="filterCars('sedan')" class="filter-pill px-6 py-2.5 rounded-full border border-gray-200 text-sm font-medium" data-filter="sedan">Sedans</button>
-                <button onclick="filterCars('luxury')" class="filter-pill px-6 py-2.5 rounded-full border border-gray-200 text-sm font-medium" data-filter="luxury">Luxury</button>
-                <button onclick="filterCars('truck')" class="filter-pill px-6 py-2.5 rounded-full border border-gray-200 text-sm font-medium" data-filter="truck">Trucks</button>
-            </div>
-            
-            <!-- Cars Grid -->
-            <div id="carsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Car 1 -->
-                <div class="car-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg reveal" data-category="luxury">
-                    <div class="relative h-64 overflow-hidden bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&h=400&fit=crop&q=90" alt="Mercedes Benz" class="car-img w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full">IMPORTED</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-display text-xl font-bold">Mercedes-Benz C300</h3>
-                            <span class="text-green-600 text-sm font-semibold">Available</span>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-4">2023 • 15,000 km • Petrol</p>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-2xl font-bold text-indigo-600">₦28.5M</p>
-                            <button onclick="inquire('Mercedes-Benz C300')" class="text-sm font-medium text-gray-600 hover:text-indigo-600 flex items-center gap-1">
-                                Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </button>
-                        </div>
+            <div class="modal-info">
+                <h2 class="modal-name" id="modalName"></h2>
+                <p class="modal-price" id="modalPrice"></p>
+                <p class="modal-description">
+                    Premium quality streetwear piece crafted from heavyweight cotton fleece. 
+                    Features embroidered logo and relaxed fit. Made in Portugal.
+                </p>
+                
+                <div class="size-selector">
+                    <span class="size-label">SELECT SIZE</span>
+                    <div class="sizes">
+                        <button class="size-btn" onclick="selectSize(this)">S</button>
+                        <button class="size-btn" onclick="selectSize(this)">M</button>
+                        <button class="size-btn active" onclick="selectSize(this)">L</button>
+                        <button class="size-btn" onclick="selectSize(this)">XL</button>
                     </div>
                 </div>
                 
-                <!-- Car 2 -->
-                <div class="car-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg reveal" data-category="suv">
-                    <div class="relative h-64 overflow-hidden bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1609991012852-4e86676e8ce0?w=600&h=400&fit=crop&q=90" alt="Toyota Land Cruiser" class="car-img w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">POPULAR</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-display text-xl font-bold">Toyota Land Cruiser</h3>
-                            <span class="text-green-600 text-sm font-semibold">Available</span>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-4">2022 • 8,500 km • Diesel</p>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-2xl font-bold text-indigo-600">₦42M</p>
-                            <button onclick="inquire('Toyota Land Cruiser')" class="text-sm font-medium text-gray-600 hover:text-indigo-600 flex items-center gap-1">
-                                Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Car 3 -->
-                <div class="car-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg reveal" data-category="sedan">
-                    <div class="relative h-64 overflow-hidden bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&h=400&fit=crop&q=90" alt="BMW 5 Series" class="car-img w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-display text-xl font-bold">BMW 530i</h3>
-                            <span class="text-yellow-600 text-sm font-semibold">Reserved</span>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-4">2022 • 22,000 km • Petrol</p>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-2xl font-bold text-indigo-600">₦32M</p>
-                            <button onclick="inquire('BMW 530i')" class="text-sm font-medium text-gray-600 hover:text-indigo-600 flex items-center gap-1">
-                                Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Car 4 -->
-                <div class="car-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg reveal" data-category="suv">
-                    <div class="relative h-64 overflow-hidden bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&h=400&fit=crop&q=90" alt="Lexus RX" class="car-img w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">NEW ARRIVAL</div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-display text-xl font-bold">Lexus RX 350</h3>
-                            <span class="text-green-600 text-sm font-semibold">Available</span>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-4">2023 • 5,000 km • Petrol</p>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-2xl font-bold text-indigo-600">₦35M</p>
-                            <button onclick="inquire('Lexus RX 350')" class="text-sm font-medium text-gray-600 hover:text-indigo-600 flex items-center gap-1">
-                                Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Car 5 -->
-                <div class="car-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg reveal" data-category="sedan">
-                    <div class="relative h-64 overflow-hidden bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&h=400&fit=crop&q=90" alt="Toyota Camry" class="car-img w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-display text-xl font-bold">Toyota Camry XSE</h3>
-                            <span class="text-green-600 text-sm font-semibold">Available</span>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-4">2022 • 18,000 km • Petrol</p>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-2xl font-bold text-indigo-600">₦18.5M</p>
-                            <button onclick="inquire('Toyota Camry XSE')" class="text-sm font-medium text-gray-600 hover:text-indigo-600 flex items-center gap-1">
-                                Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Car 6 -->
-                <div class="car-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg reveal" data-category="truck">
-                    <div class="relative h-64 overflow-hidden bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop&q=90" alt="Ford F-150" class="car-img w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-display text-xl font-bold">Ford F-150 Platinum</h3>
-                            <span class="text-green-600 text-sm font-semibold">Available</span>
-                        </div>
-                        <p class="text-gray-500 text-sm mb-4">2022 • 12,000 km • Petrol</p>
-                        <div class="flex items-center justify-between">
-                            <p class="font-display text-2xl font-bold text-indigo-600">₦55M</p>
-                            <button onclick="inquire('Ford F-150 Platinum')" class="text-sm font-medium text-gray-600 hover:text-indigo-600 flex items-center gap-1">
-                                Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- View All -->
-            <div class="text-center mt-12 reveal">
-                <button onclick="showMoreCars()" class="px-8 py-4 border border-gray-300 rounded-full font-medium hover:border-indigo-600 hover:text-indigo-600 transition">
-                    View All Inventory
-                </button>
+                <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Services Section -->
-    <section id="services" class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <span class="text-indigo-600 font-medium text-sm uppercase tracking-wider">Our Services</span>
-                <h2 class="font-display text-4xl lg:text-5xl font-bold mt-4 mb-6">Why Choose THRIVE Motors</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Service 1 -->
-                <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 reveal">
-                    <div class="w-14 h-14 bg-indigo-50 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-display text-lg font-bold mb-2">Verified Imports</h3>
-                    <p class="text-gray-500 text-sm">All vehicles come with full auction sheets and inspection reports from source countries.</p>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 reveal" style="transition-delay: 0.1s;">
-                    <div class="w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-display text-lg font-bold mb-2">Best Prices</h3>
-                    <p class="text-gray-500 text-sm">Direct sourcing means competitive pricing with no middlemen. Flexible payment plans available.</p>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 reveal" style="transition-delay: 0.2s;">
-                    <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-display text-lg font-bold mb-2">Clear Documentation</h3>
-                    <p class="text-gray-500 text-sm">Full customs clearance support with complete paperwork including duty payments verified.</p>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 reveal" style="transition-delay: 0.3s;">
-                    <div class="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-display text-lg font-bold mb-2">After-Sales Support</h3>
-                    <p class="text-gray-500 text-sm">Warranty options and trusted service centers network across Nigeria for maintenance.</p>
-                </div>
-            </div>
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>We use cookies to ensure you get the best experience on our website.</p>
+        
+        <div class="cookie-buttons">
+            <button class="cookie-btn reject" onclick="dismissCookie()">Reject All</button>
+            <button class="cookie-btn accept" onclick="dismissCookie()">Accept All</button>
         </div>
-    </section>
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <span class="text-indigo-600 font-medium text-sm uppercase tracking-wider">About Us</span>
-                    <h2 class="font-display text-4xl lg:text-5xl font-bold mt-4 mb-6">Nigeria's Trusted Car Import Partner</h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Founded in 2015, THRIVE Motors has grown from a small import business to one of Nigeria's most trusted car dealerships. We specialize in sourcing premium vehicles directly from Japan, America, and Europe.
-                    </p>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
-                        Our commitment is simple: transparency in pricing, verified vehicle history, and a seamless buying experience from selection to registration.
-                    </p>
-                    <div class="flex gap-8">
-                        <div>
-                            <p class="font-display text-4xl font-bold text-indigo-600">10+</p>
-                            <p class="text-sm text-gray-500">Years Experience</p>
-                        </div>
-                        <div>
-                            <p class="font-display text-4xl font-bold text-indigo-600">500+</p>
-                            <p class="text-sm text-gray-500">Cars Delivered</p>
-                        </div>
-                        <div>
-                            <p class="font-display text-4xl font-bold text-indigo-600">3</p>
-                            <p class="text-sm text-gray-500">Continents Sourced</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal">
-                    <img src="https://images.unsplash.com/photo-1562141989-c5c79ac8f576?w=800&h=600&fit=crop&q=90" alt="Dealership" class="rounded-2xl shadow-2xl">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-24 bg-gray-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-600 to-purple-600"></div>
-        </div>
-        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <h2 class="font-display text-4xl lg:text-6xl font-bold mb-6">Ready to Find Your Car?</h2>
-            <p class="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">Let our team help you find the perfect vehicle. We handle everything from import to delivery at your doorstep.</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#inventory" class="btn-primary text-white px-8 py-4 rounded-full font-medium inline-flex items-center gap-2">
-                    Browse Inventory
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </a>
-                <button onclick="openWhatsApp()" class="px-8 py-4 rounded-full font-medium border border-gray-500 hover:border-white hover:bg-white hover:text-gray-900 transition">
-                    Chat on WhatsApp
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16">
-                <div class="reveal">
-                    <span class="text-indigo-600 font-medium text-sm uppercase tracking-wider">Contact Us</span>
-                    <h2 class="font-display text-4xl lg:text-5xl font-bold mt-4 mb-6">Get in Touch</h2>
-                    <p class="text-gray-600 mb-8">Visit our showroom or reach out. We're here to help you find your perfect drive.</p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold mb-1">Showroom Location</h3>
-                                <p class="text-gray-500">Lekki Phase 1, Lagos, Nigeria</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold mb-1">Phone</h3>
-                                <p class="text-gray-500">+234 800 THRIVE (0800 847 483)</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold mb-1">Email</h3>
-                                <p class="text-gray-500">hello@thrivemotors.ng</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="reveal">
-                    <form onsubmit="submitContact(event)" class="bg-gray-50 p-8 rounded-2xl">
-                        <div class="space-y-6">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">First Name</label>
-                                    <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 outline-none transition">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">Last Name</label>
-                                    <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 outline-none transition">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Email</label>
-                                <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 outline-none transition">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Phone</label>
-                                <input type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 outline-none transition">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Message</label>
-                                <textarea rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100 outline-none transition resize-none"></textarea>
-                            </div>
-                            <button type="submit" class="btn-primary w-full text-white py-4 rounded-lg font-medium">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                <div class="col-span-2">
-                    <a href="#" class="flex items-center space-x-2 mb-6">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold">T</div>
-                        <span class="font-display text-2xl font-bold">THRIVE<span class="text-indigo-400">MOTORS</span></span>
-                    </a>
-                    <p class="text-gray-400 max-w-sm">Nigeria's premier destination for verified imported vehicles. Direct sourcing from Japan, USA, and Europe since 2015.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-3 text-gray-400">
-                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
-                        <li><a href="#inventory" class="hover:text-white transition">Inventory</a></li>
-                        <li><a href="#services" class="hover:text-white transition">Services</a></li>
-                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Follow Us</h4>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-                <p>&copy; 2025 THRIVE Motors. All rights reserved. <span class="mx-2">|</span> Lagos, Nigeria</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition z-50"></div>
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
 
     <script>
-        // Mobile menu
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            const menuIcon = document.getElementById('menuIcon');
-            const closeIcon = document.getElementById('closeIcon');
-            
-            menu.classList.toggle('open');
-            menuIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-        }
-        
-        // Navbar scroll effect
+        // Cart state
+        let cart = [];
+        let currentProduct = null;
+        let currentSize = 'L';
+
+        // Header scroll effect
         window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
+            const header = document.getElementById('header');
             if (window.scrollY > 50) {
-                navbar.classList.add('shadow-lg');
+                header.classList.add('scrolled');
             } else {
-                navbar.classList.remove('shadow-lg');
+                header.classList.remove('scrolled');
             }
         });
-        
-        // Filter cars
-        function filterCars(category) {
-            const cars = document.querySelectorAll('.car-card');
-            const buttons = document.querySelectorAll('.filter-pill');
+
+        // Toggle cart
+        function toggleCart() {
+            const overlay = document.getElementById('cartOverlay');
+            const sidebar = document.getElementById('cartSidebar');
+            overlay.classList.toggle('open');
+            sidebar.classList.toggle('open');
+        }
+
+        // Open product modal
+        function openProduct(name, price, image) {
+            currentProduct = { name, price, image };
+            document.getElementById('modalName').textContent = name;
+            document.getElementById('modalPrice').textContent = '$' + price;
+            document.getElementById('modalImg').src = image;
+            document.getElementById('productModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close product modal
+        function closeProduct() {
+            document.getElementById('productModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Select size
+        function selectSize(btn) {
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentSize = btn.textContent;
+        }
+
+        // Add to cart
+        function addToCart() {
+            if (!currentProduct) return;
             
-            // Update active button
-            buttons.forEach(btn => {
-                if (btn.dataset.filter === category) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
+            const item = {
+                id: Date.now(),
+                name: currentProduct.name,
+                price: currentProduct.price,
+                image: currentProduct.image,
+                size: currentSize
+            };
             
-            // Filter cars with animation
-            cars.forEach((car, index) => {
-                if (category === 'all' || car.dataset.category === category) {
-                    car.style.display = 'block';
-                    setTimeout(() => {
-                        car.style.opacity = '1';
-                        car.style.transform = 'translateY(0)';
-                    }, index * 50);
-                } else {
-                    car.style.opacity = '0';
-                    car.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        car.style.display = 'none';
-                    }, 300);
-                }
-            });
+            cart.push(item);
+            updateCart();
+            closeProduct();
+            showToast('Added to cart');
         }
-        
-        // Show more cars
-        function showMoreCars() {
-            showToast('Full inventory coming soon! Contact us on WhatsApp.');
+
+        // Remove from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
         }
-        
-        // Inquire about car
-        function inquire(carName) {
-            const message = `Hi, I'm interested in the ${carName}. Can you provide more details?`;
-            window.open(`https://wa.me/2348000000000?text=${encodeURIComponent(message)}`, '_blank');
+
+        // Update cart UI
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            // Update count
+            cartCount.textContent = cart.length + ' +';
+            
+            // Update items
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">Size: ${item.size} — $${item.price}</div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">&times;</button>
+                    </div>
+                `).join('');
+            }
+            
+            // Update total
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartTotal.textContent = '$' + total;
         }
-        
-        // Open WhatsApp
-        function openWhatsApp() {
-            window.open('https://wa.me/2348000000000?text=Hi, Im interested in buying a car from THRIVE Motors', '_blank');
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty');
+                return;
+            }
+            showToast('Checkout coming soon');
         }
-        
-        // Submit contact form
-        function submitContact(e) {
-            e.preventDefault();
-            showToast('Message sent! We will contact you soon.');
-            e.target.reset();
+
+        // Dismiss cookie banner
+        function dismissCookie() {
+            document.getElementById('cookieBanner').style.display = 'none';
         }
-        
-        // Toast notification
+
+        // Show toast
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
-            toast.classList.remove('opacity-0', 'pointer-events-none');
-            toast.classList.add('opacity-100');
-            
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'pointer-events-none');
-                toast.classList.remove('opacity-100');
-            }, 3000);
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
         }
-        
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+
+        // Toggle currency
+        function toggleCurrency() {
+            showToast('Currency switch coming soon');
+        }
+
+        // Mobile menu
+        function toggleMobileMenu() {
+            showToast('Menu coming soon');
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            showToast('Filter: ' + category);
+        }
+
+        // Close modal on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProduct();
+                document.getElementById('cartOverlay').classList.remove('open');
+                document.getElementById('cartSidebar').classList.remove('open');
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Preload images
+            const images = document.querySelectorAll('.product img');
+            images.forEach(img => {
+                const src = img.getAttribute('src');
+                if (src) {
+                    const preload = new Image();
+                    preload.src = src;
                 }
             });
         });
